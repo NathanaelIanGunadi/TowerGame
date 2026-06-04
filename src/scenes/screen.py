@@ -1,9 +1,9 @@
-from src.ui.level import *
 from math import ceil
+
 import pygame
 
-class Screen():
 
+class Screen:
     def __init__(self, name, x, y):
         self.name = name
         self.width = x
@@ -34,13 +34,13 @@ class Screen():
 
         mx, my = pygame.mouse.get_pos()
 
-        if 1 < mx <= self.width * 0.1: #left
+        if 1 < mx <= self.width * 0.1:  # left
             if self.scroll <= -2:
                 self.scroll += 4
                 level.world_shift = 4
             else:
                 level.world_shift = 0
-        elif self.width - 1 > mx >= self.width * 0.9: #right
+        elif self.width - 1 > mx >= self.width * 0.9:  # right
             if self.scroll >= -720:
                 self.scroll -= 4
                 level.world_shift = -4
@@ -57,4 +57,3 @@ class Screen():
                 self.screen.blit(self.bg_image, (0, 0))
             else:
                 self.screen.fill((0, 0, 0))
-

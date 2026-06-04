@@ -1,5 +1,6 @@
 import pygame
 
+
 class HealthBar:
     def __init__(self, entity):
         self.entity_hp_max = entity.hp
@@ -22,9 +23,18 @@ class HealthBar:
         self.image = pygame.Surface((self.width, self.height))
         self.image.fill("red")
         self.rect = self.image.get_rect(topleft=(self.x_pos, self.y_pos))
-        team2_displacement = (self.entity_hp_max - self.entity_hp_current) * self.bar_multiplier
+        team2_displacement = (
+            self.entity_hp_max - self.entity_hp_current
+        ) * self.bar_multiplier
         if self.team == "1":
-            pygame.display.get_surface().blit(self.image, (self.rect.x + self.scroll, self.rect.y))
+            pygame.display.get_surface().blit(
+                self.image, (self.rect.x + self.scroll, self.rect.y)
+            )
         else:
-            pygame.display.get_surface().blit(self.image, (self.rect.x + self.scroll - team2_displacement - self.width, self.rect.y))
-
+            pygame.display.get_surface().blit(
+                self.image,
+                (
+                    self.rect.x + self.scroll - team2_displacement - self.width,
+                    self.rect.y,
+                ),
+            )

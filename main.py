@@ -1,16 +1,12 @@
 import pygame
-import src.states.spritesheet as spritesheet
 
-from src.ui.screen import *
-from src.entities.soldier import *
-from src.entities.soldier_ranged import *
-from src.ui.level import *
+from src.scenes.screen import Screen
+from src.scenes.level import Level, screen_width, screen_height
+from src.entities.soldier_melee import SoldierMelee
 from src.entities.tower import Tower
-from src.states.hp_bar import *
-from src.states.point_bar import *
-from src.ui.button import *
-from src.entities.projectile import *
-import math
+from src.hud.health_bar import HealthBar
+from src.hud.point_bar import PointBar
+from src.hud.button import Button
 
 pygame.init()
 
@@ -57,6 +53,7 @@ start_button = Button(WHITE, 400, 100, text="START")
 
 bullets = []
 
+
 def main():
     running = True
     clock = pygame.time.Clock()
@@ -81,7 +78,6 @@ def main():
             start_button.draw(start_screen.screen, button_x, button_y, BLACK, 80, True)
 
             for event in pygame.event.get():
-
                 if event.type == pygame.QUIT:
                     running = False
 
@@ -95,7 +91,6 @@ def main():
             continue
 
         if escape_pressed:
-
             menu_screen.update_screen()
 
             button_x = menu_screen.width / 2 - resume_button.width / 2
@@ -149,15 +144,6 @@ def main():
                         left_points.game_points -= 1
                     else:
                         print("not enough")
-                if event.key == pygame.K_LEFT:  # summon left side soldier
-                    if left_points.game_points >= 1:
-                        new_left = SoldierRanged("1", "archer", 100, 25, 100, 500, 1)
-                        left_team.append(new_left)
-                        left_group.add(new_left)
-                        all_sprites.add(new_left)
-                        left_points.game_points -= 1
-                    else:
-                        print("not enough")
                 if event.key == pygame.K_2:  # summon left side soldier
                     if right_points.game_points >= 1:
                         new_right = SoldierMelee("2", "swordsman", 100, 25, 100, 0, 1)
@@ -200,5 +186,6 @@ def main():
         level_.run()
         pygame.display.update()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
