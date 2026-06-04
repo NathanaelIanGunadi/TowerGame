@@ -1,6 +1,6 @@
 import pygame
 import os
-from level import  *
+from src.ui.level import  *
 
 
 class Tower(pygame.sprite.Sprite):

@@ -1,16 +1,14 @@
-import spritesheet
-from level import *
+import src.states.spritesheet as spritesheet
+from src.ui.level import *
 import math
-from projectile import *
-from main import bullets
 
 pygame.init()
 
 
-class SoldierRanged(pygame.sprite.Sprite):
+class SoldierMelee(pygame.sprite.Sprite):
 
     def __init__(self, team, name, hp, dmg, attack_speed, attack_range, cost):
-        super(SoldierRanged, self).__init__()
+        super(SoldierMelee, self).__init__()
         w, h = pygame.display.get_surface().get_size()
         self.team = team
         self.name = name
@@ -28,7 +26,7 @@ class SoldierRanged(pygame.sprite.Sprite):
         self.attacked_this_turn = True
         self.pattern = 0
 
-        if self.name == "archer":
+        if self.name == "swordsman":
             self.sprite_sheet_image = spritesheet.SpriteSheet("textures/sprite_textures/attack_sheet.png")
             self.width = w / 16
             self.height = h / 8
@@ -137,8 +135,7 @@ class SoldierRanged(pygame.sprite.Sprite):
                 self.attack()
                 if self.attacked_this_turn is False:
                     self.attacked_this_turn = True
-                    self.projectile = ProjectileSprite("textures/sprite_textures/Arrow.png", self, velocity=50, angle=1)
-                    bullets.append(self.projectile)
+                    current_target.hp -= self.dmg
                     if current_target.hp <= 0:
                         current_target.kill()
 
@@ -150,4 +147,8 @@ class SoldierRanged(pygame.sprite.Sprite):
             self.attacked_this_turn = True
             self.attack_timer_sum = round(self.attack_speed / 11)
             self.move()
+
+
+
+
 

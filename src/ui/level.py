@@ -1,4 +1,4 @@
-from screen import *
+from src.ui.screen import *
 import pygame
 
 level_map = [

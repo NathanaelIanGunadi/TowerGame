@@ -1,15 +1,15 @@
 import pygame
-import spritesheet
+import src.states.spritesheet as spritesheet
 
-from screen import *
-from soldier import *
-from soldier_ranged import *
-from level import *
-from tower import Tower
-from hp_bar import *
-from point_bar import *
-from button import *
-from projectile import *
+from src.ui.screen import *
+from src.entities.soldier import *
+from src.entities.soldier_ranged import *
+from src.ui.level import *
+from src.entities.tower import Tower
+from src.states.hp_bar import *
+from src.states.point_bar import *
+from src.ui.button import *
+from src.entities.projectile import *
 import math
 
 pygame.init()
@@ -65,6 +65,8 @@ def main():
     escape_pressed = False
     start = True
 
+    start_screen.use_screen()
+
     while running:
         clock.tick(fps)
         NOW_MS = pygame.time.get_ticks()
@@ -72,8 +74,6 @@ def main():
         scroll = game_screen.set_scroll(level_)
 
         if start:
-            start_screen.use_screen()
-
             start_screen.update_screen()
 
             button_x = start_screen.width / 2 - start_button.width / 2

@@ -1,4 +1,4 @@
-from level import *
+from src.ui.level import *
 from math import ceil
 import pygame
 
